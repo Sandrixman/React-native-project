@@ -1,9 +1,13 @@
 import {
   ImageBackground,
+  Keyboard,
+  KeyboardAvoidingView,
+  Platform,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
+  TouchableWithoutFeedback,
   View,
 } from "react-native";
 import { useFonts } from "expo-font";
@@ -25,7 +29,9 @@ export default function Registration() {
     return null;
   }
 
-  const onButton = () => {};
+  const onButton = () => {
+    console.log(`Name: ${nameInpyt}, mail: ${mailInpyt}`);
+  };
 
   return (
     <ImageBackground
@@ -34,39 +40,45 @@ export default function Registration() {
       resizeMode="cover"
     >
       <View style={{ flex: 1 }}></View>
-      <View style={styles.form}>
-        <View style={styles.absoluteBox}>
-          <View style={styles.avatar}></View>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={styles.form}>
+          <View style={styles.absoluteBox}>
+            <View style={styles.avatar}></View>
+          </View>
+          <Text style={styles.title}>Реєстрація</Text>
+          <KeyboardAvoidingView
+            behavior={Platform.OS == "ios" ? "padding" : "height"}
+          >
+            <TextInput
+              style={styles.input}
+              onChangeText={setNameInpyt}
+              value={nameInpyt}
+              placeholder="Ваше ім'я"
+            />
+            <TextInput
+              style={styles.input}
+              onChangeText={setMailInpyt}
+              value={mailInpyt}
+              placeholder="Адреса електронної пошти"
+            />
+            <TextInput
+              style={styles.input}
+              onChangeText={setPasswordInpyt}
+              value={passwordInpyt}
+              placeholder="Пароль"
+            />
+          </KeyboardAvoidingView>
+          <TouchableOpacity style={styles.button} onPress={onButton}>
+            <Text style={styles.btnText}>Зареєстуватися</Text>
+          </TouchableOpacity>
+          <Text
+            style={{ textAlign: "center", marginTop: 30 }}
+            onPress={() => navigation.navigate("Login")}
+          >
+            Вже є акаунт? Увійти
+          </Text>
         </View>
-        <Text style={styles.title}>Реєстрація</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={setNameInpyt}
-          value={nameInpyt}
-          placeholder="Ваше ім'я"
-        />
-        <TextInput
-          style={styles.input}
-          onChangeText={setMailInpyt}
-          value={mailInpyt}
-          placeholder="Адреса електронної пошти"
-        />
-        <TextInput
-          style={styles.input}
-          onChangeText={setPasswordInpyt}
-          value={passwordInpyt}
-          placeholder="Пароль"
-        />
-        <TouchableOpacity style={styles.button} onPress={onButton}>
-          <Text style={styles.btnText}>Зареєстуватися</Text>
-        </TouchableOpacity>
-        <Text
-          style={{ textAlign: "center", marginTop: 10 }}
-          onPress={() => navigation.navigate("Login")}
-        >
-          Вже є акаунт? Увійти
-        </Text>
-      </View>
+      </TouchableWithoutFeedback>
     </ImageBackground>
   );
 }
