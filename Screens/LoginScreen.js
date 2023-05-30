@@ -39,15 +39,16 @@ export default function Login() {
       resizeMode="cover"
     >
       <View style={{ flex: 1 }}></View>
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={styles.form}>
-          <View style={styles.absoluteBox}>
-            <View style={styles.avatar}></View>
-          </View>
-          <Text style={styles.title}>Вхід</Text>
-          <KeyboardAvoidingView
-            behavior={Platform.OS == "ios" ? "padding" : "height"}
-          >
+      <KeyboardAvoidingView
+        behavior={Platform.OS == "ios" ? "padding" : null}
+        style={styles.keyboardAvoidingContainer}
+      >
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <View style={styles.form}>
+            <View style={styles.absoluteBox}>
+              <View style={styles.avatar}></View>
+            </View>
+            <Text style={styles.title}>Вхід</Text>
             <TextInput
               style={styles.input}
               onChangeText={setMailInpyt}
@@ -60,18 +61,18 @@ export default function Login() {
               value={passwordInpyt}
               placeholder="Пароль"
             />
-          </KeyboardAvoidingView>
-          <TouchableOpacity style={styles.button} onPress={onButton}>
-            <Text style={styles.btnText}>Увійти</Text>
-          </TouchableOpacity>
-          <Text
-            style={{ textAlign: "center", marginTop: 30 }}
-            onPress={() => navigation.navigate("Login")}
-          >
-            Немає акаунту? Зареєструватися
-          </Text>
-        </View>
-      </TouchableWithoutFeedback>
+            <TouchableOpacity style={styles.button} onPress={onButton}>
+              <Text style={styles.btnText}>Увійти</Text>
+            </TouchableOpacity>
+            <Text
+              style={{ textAlign: "center", marginTop: 30 }}
+              onPress={() => navigation.navigate("Registration")}
+            >
+              Немає акаунту? Зареєструватися
+            </Text>
+          </View>
+        </TouchableWithoutFeedback>
+      </KeyboardAvoidingView>
     </ImageBackground>
   );
 }
@@ -79,6 +80,9 @@ export default function Login() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  keyboardAvoidingContainer: {
+    flex: 2,
   },
   form: {
     flex: 2,
