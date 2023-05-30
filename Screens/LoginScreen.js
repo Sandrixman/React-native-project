@@ -29,7 +29,7 @@ export default function Login() {
   }
 
   const onButton = () => {
-    console.log(`Name: ${nameInpyt}, mail: ${mailInpyt}`);
+    console.log(`Name: ${mailInpyt}, mail: ${passwordInpyt}`);
   };
 
   return (
