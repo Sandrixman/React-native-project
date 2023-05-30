@@ -29,7 +29,7 @@ export default function Login() {
   }
 
   const onButton = () => {
-    console.log("click");
+    console.log(`Name: ${nameInpyt}, mail: ${mailInpyt}`);
   };
 
   return (
