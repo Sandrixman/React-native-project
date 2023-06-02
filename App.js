@@ -5,6 +5,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import Registration from "./Screens/RegistrationScreen";
 import Login from "./Screens/LoginScreen";
 import Home from "./Screens/Home";
+import { Map } from "./Screens/MapScreen";
+import Comments from "./Screens/CommentsScreen";
 
 const MainStack = createStackNavigator();
 
@@ -31,6 +33,7 @@ export default function App() {
           )}
         </MainStack.Screen>
         <MainStack.Screen name="Login" component={Login} />
+        <MainStack.Screen name="Comments" component={Comments} />
         <MainStack.Screen name="Home">
           {() => (
             <Home userName={userName} userMail={userMail} photoUri={photoUri} />
