@@ -4,8 +4,8 @@ import { View, TouchableOpacity } from "react-native";
 import { Ionicons, Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 import { styles } from "../style";
 import { CreatePosts } from "./CreatePostsScreen";
-import { Comments } from "./CommentsScreen";
 import { Profile } from "./ProfileScreen";
+import { Posts } from "./PostsScreen";
 
 const Tabs = createBottomTabNavigator();
 const style = styles();
@@ -17,7 +17,7 @@ const Home = ({ userName, userMail, photoUri }) => {
 
   return (
     <Tabs.Navigator
-      initialRouteName="Comments"
+      initialRouteName="Posts"
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused }) => {
           if (route.name === "Profile") {
@@ -36,7 +36,7 @@ const Home = ({ userName, userMail, photoUri }) => {
                 <Feather name="plus" size={20} color="white" />
               </View>
             );
-          } else if (route.name === "Comments") {
+          } else if (route.name === "Posts") {
             return <Ionicons name="grid-outline" size={24} color="black" />;
           }
           return null;
@@ -60,7 +60,7 @@ const Home = ({ userName, userMail, photoUri }) => {
       })}
     >
       <Tabs.Screen
-        name="Comments"
+        name="Posts"
         options={{
           title: "Публікації",
           headerTitleAlign: "center",
@@ -81,11 +81,7 @@ const Home = ({ userName, userMail, photoUri }) => {
         }}
       >
         {() => (
-          <Comments
-            userName={userName}
-            userMail={userMail}
-            photoUri={photoUri}
-          />
+          <Posts userName={userName} userMail={userMail} photoUri={photoUri} />
         )}
       </Tabs.Screen>
       <Tabs.Screen
