@@ -1,19 +1,17 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useNavigation } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { View, TouchableOpacity } from "react-native";
 import { Ionicons, Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 import { styles } from "../style";
-
 import { CreatePosts } from "./CreatePostsScreen";
 import { Comments } from "./CommentsScreen";
 import { Profile } from "./ProfileScreen";
 
 const Tabs = createBottomTabNavigator();
+const style = styles();
 
-const Home = () => {
+const Home = ({ userName, userMail, photoUri }) => {
   const navigation = useNavigation();
-
-  const style = styles();
 
   const onLogout = () => navigation.navigate("Login");
 
@@ -25,17 +23,17 @@ const Home = () => {
           if (route.name === "Profile") {
             return <Feather name="user" size={20} color="black" />;
           } else if (route.name === "CreatePosts") {
-            return !focused ? (
-              <View style={style.addBtn}>
-                <Feather name="plus" size={20} color="white" />
-              </View>
-            ) : (
-              <View style={style.inactiveAddBtn}>
+            return focused ? (
+              <View style={style.addBtn} backgroundColor="#F6F6F6">
                 <MaterialCommunityIcons
                   name="delete-forever-outline"
                   size={28}
                   color="#DADADA"
                 />
+              </View>
+            ) : (
+              <View style={style.addBtn} backgroundColor="#FF6C00">
+                <Feather name="plus" size={20} color="white" />
               </View>
             );
           } else if (route.name === "Comments") {
@@ -62,15 +60,7 @@ const Home = () => {
       })}
     >
       <Tabs.Screen
-        name="EmptyTabLeft"
-        component={View}
-        options={{
-          tabBarIcon: () => null,
-        }}
-      />
-      <Tabs.Screen
         name="Comments"
-        component={Comments}
         options={{
           title: "Публікації",
           headerTitleAlign: "center",
@@ -89,7 +79,15 @@ const Home = () => {
             </TouchableOpacity>
           ),
         }}
-      />
+      >
+        {() => (
+          <Comments
+            userName={userName}
+            userMail={userMail}
+            photoUri={photoUri}
+          />
+        )}
+      </Tabs.Screen>
       <Tabs.Screen
         name="CreatePosts"
         component={CreatePosts}
@@ -117,13 +115,6 @@ const Home = () => {
         component={Profile}
         options={{
           headerShown: false,
-        }}
-      />
-      <Tabs.Screen
-        name="EmptyTabRight"
-        component={View}
-        options={{
-          tabBarIcon: () => null,
         }}
       />
     </Tabs.Navigator>

@@ -29,13 +29,13 @@ export function CreatePosts() {
         ) : (
           <Text style={style.photoText}>Завантажте фото</Text>
         )}
+        <View style={[style.photoIconWrapper]}>
+          <Ionicons
+            name="md-camera"
+            style={[style.photoIcon, photoUri && style.activePhotoIcon]}
+          />
+        </View>
       </TouchableOpacity>
-      <View style={[style.photoIconWrapper, photoUri && style.activePhotoIcon]}>
-        <Ionicons
-          name="md-camera"
-          style={[style.photoIcon, photoUri && style.activePhotoIcon]}
-        />
-      </View>
       <TextInput
         style={style.postInput}
         onChangeText={setName}

@@ -17,7 +17,11 @@ import {
   Image,
 } from "react-native";
 
-export default function Registration() {
+export default function Registration({
+  setUserName,
+  setUserMail,
+  getPhotoUri,
+}) {
   const [fontsLoaded] = useFonts({
     "Inter-Black": require("../assets/fonts/Inter-Thin.otf"),
   });
@@ -25,7 +29,7 @@ export default function Registration() {
   const [nameInpyt, setNameInpyt] = useState("");
   const [mailInpyt, setMailInpyt] = useState("");
   const [passwordInpyt, setPasswordInpyt] = useState("");
-  const [avatarUri, setAvatarUri] = useState(null);
+  const [photoUri, setPhotoUri] = useState(null);
 
   const navigation = useNavigation();
 
@@ -38,12 +42,14 @@ export default function Registration() {
   }
 
   const onEntry = () => {
-    console.log(`Name: ${mailInpyt}, mail: ${passwordInpyt}`);
+    setUserName(nameInpyt);
+    setUserMail(mailInpyt);
+    getPhotoUri(photoUri);
     return navigation.navigate("Home");
   };
 
   const removeAvatar = () => {
-    setAvatarUri(null);
+    setPhotoUri(null);
   };
 
   return (
@@ -60,8 +66,8 @@ export default function Registration() {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={regStyle.form}>
             <View style={regStyle.absoluteBox}>
-              <Image style={regStyle.avatar} source={{ uri: avatarUri }} />
-              {avatarUri ? (
+              <Image style={regStyle.avatar} source={{ uri: photoUri }} />
+              {photoUri ? (
                 <TouchableOpacity onPress={removeAvatar}>
                   <AntDesign
                     style={regStyle.setImg}
@@ -70,9 +76,7 @@ export default function Registration() {
                   />
                 </TouchableOpacity>
               ) : (
-                <TouchableOpacity
-                  onPress={() => chooseAvatar({ setAvatarUri })}
-                >
+                <TouchableOpacity onPress={() => chooseAvatar({ setPhotoUri })}>
                   <AntDesign
                     style={regStyle.setImg}
                     name="pluscircleo"

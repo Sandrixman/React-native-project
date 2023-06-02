@@ -5,7 +5,7 @@ import { AntDesign } from "@expo/vector-icons";
 import { View, Image, TouchableOpacity, ImageBackground } from "react-native";
 
 export function Profile() {
-  const [avatarUri, setAvatarUri] = useState(null);
+  const [photoUri, setPhotoUri] = useState(null);
 
   const style = styles();
 
@@ -18,8 +18,8 @@ export function Profile() {
       <View style={{ flex: 0.3 }}></View>
       <View style={style.container}>
         <View style={style.absoluteBox}>
-          <Image style={style.avatar} source={{ uri: avatarUri }} />
-          {avatarUri ? (
+          <Image style={style.avatar} source={{ uri: photoUri }} />
+          {photoUri ? (
             <TouchableOpacity onPress={removeAvatar}>
               <AntDesign
                 style={style.setImg}
@@ -28,7 +28,7 @@ export function Profile() {
               />
             </TouchableOpacity>
           ) : (
-            <TouchableOpacity onPress={() => chooseAvatar({ setAvatarUri })}>
+            <TouchableOpacity onPress={() => chooseAvatar({ setPhotoUri })}>
               <AntDesign
                 style={style.setImg}
                 name="pluscircleo"

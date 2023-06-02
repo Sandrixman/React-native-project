@@ -34,6 +34,12 @@ export const styles = (keyboardAvoiding, formPadding) =>
       borderRadius: 15,
       backgroundColor: "#F6F6F6",
     },
+    comentsAvatar: {
+      width: 70,
+      height: 70,
+      borderRadius: 15,
+      backgroundColor: "#F6F6F6",
+    },
     postPhoto: {
       alignSelf: "center",
       width: "100%",
@@ -45,10 +51,9 @@ export const styles = (keyboardAvoiding, formPadding) =>
       position: "absolute",
       left: 0,
       right: 0,
-      top: 120,
+      top: 90,
       marginHorizontal: "auto",
     },
-    activePhotoIconWrapper: {},
     photoIcon: {
       alignSelf: "center",
       fontSize: 28,
@@ -112,15 +117,10 @@ export const styles = (keyboardAvoiding, formPadding) =>
       color: "grey",
     },
     addBtn: {
-      paddingHorizontal: 28,
-      paddingVertical: 10,
+      width: 70,
+      height: 40,
       borderRadius: 30,
-      backgroundColor: "#FF6C00",
-    },
-    inactiveAddBtn: {
-      paddingHorizontal: 25,
-      paddingVertical: 10,
-      borderRadius: 30,
-      backgroundColor: "#F6F6F6",
+      justifyContent: "center",
+      alignItems: "center",
     },
   });
