@@ -1,18 +1,21 @@
+import { useFonts } from "expo-font";
+import { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
+import { styles } from "../style";
+import { chooseAvatar } from "../utils/imagePicker";
+import { AntDesign } from "@expo/vector-icons";
 import {
   ImageBackground,
   Keyboard,
   KeyboardAvoidingView,
   Platform,
-  StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   TouchableWithoutFeedback,
   View,
+  Image,
 } from "react-native";
-import { useFonts } from "expo-font";
-import { useState } from "react";
-import { useNavigation } from "@react-navigation/native";
 
 export default function Registration() {
   const [fontsLoaded] = useFonts({
@@ -22,54 +25,83 @@ export default function Registration() {
   const [nameInpyt, setNameInpyt] = useState("");
   const [mailInpyt, setMailInpyt] = useState("");
   const [passwordInpyt, setPasswordInpyt] = useState("");
+  const [avatarUri, setAvatarUri] = useState(null);
 
   const navigation = useNavigation();
+
+  const keyboardAvoidingContainer = 3.5;
+  const formPadding = 60;
+  const regStyle = styles(keyboardAvoidingContainer, formPadding);
 
   if (!fontsLoaded) {
     return null;
   }
 
-  const onButton = () => {
-    console.log(`Name: ${nameInpyt}, mail: ${mailInpyt}`);
+  const onEntry = () => {
+    console.log(`Name: ${mailInpyt}, mail: ${passwordInpyt}`);
+    return navigation.navigate("Home");
+  };
+
+  const removeAvatar = () => {
+    setAvatarUri(null);
   };
 
   return (
     <ImageBackground
-      style={styles.container}
+      style={{ flex: 1 }}
       source={require("../assets/PhotoBG.jpg")}
       resizeMode="cover"
     >
       <View style={{ flex: 1 }}></View>
       <KeyboardAvoidingView
         behavior={Platform.OS == "ios" ? "padding" : null}
-        style={styles.keyboardAvoidingContainer}
+        style={regStyle.keyboardAvoidingContainer}
       >
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <View style={styles.form}>
-            <View style={styles.absoluteBox}>
-              <View style={styles.avatar}></View>
+          <View style={regStyle.form}>
+            <View style={regStyle.absoluteBox}>
+              <Image style={regStyle.avatar} source={{ uri: avatarUri }} />
+              {avatarUri ? (
+                <TouchableOpacity onPress={removeAvatar}>
+                  <AntDesign
+                    style={regStyle.setImg}
+                    name="closecircleo"
+                    color="grey"
+                  />
+                </TouchableOpacity>
+              ) : (
+                <TouchableOpacity
+                  onPress={() => chooseAvatar({ setAvatarUri })}
+                >
+                  <AntDesign
+                    style={regStyle.setImg}
+                    name="pluscircleo"
+                    color="#FF6C00"
+                  />
+                </TouchableOpacity>
+              )}
             </View>
-            <Text style={styles.title}>Реєстрація</Text>
+            <Text style={regStyle.title}>Реєстрація</Text>
             <TextInput
-              style={styles.input}
+              style={regStyle.input}
               onChangeText={setNameInpyt}
               value={nameInpyt}
               placeholder="Ваше ім'я"
             />
             <TextInput
-              style={styles.input}
+              style={regStyle.input}
               onChangeText={setMailInpyt}
               value={mailInpyt}
               placeholder="Адреса електронної пошти"
             />
             <TextInput
-              style={styles.input}
+              style={regStyle.input}
               onChangeText={setPasswordInpyt}
               value={passwordInpyt}
               placeholder="Пароль"
             />
-            <TouchableOpacity style={styles.button} onPress={onButton}>
-              <Text style={styles.btnText}>Зареєстуватися</Text>
+            <TouchableOpacity style={regStyle.button} onPress={onEntry}>
+              <Text style={regStyle.btnText}>Зареєстуватися</Text>
             </TouchableOpacity>
             <Text
               style={{ textAlign: "center", marginTop: 30 }}
@@ -83,59 +115,3 @@ export default function Registration() {
     </ImageBackground>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  keyboardAvoidingContainer: {
-    flex: 3,
-  },
-  form: {
-    flex: 3,
-    paddingTop: 80,
-    paddingHorizontal: 16,
-    backgroundColor: "white",
-    borderTopRightRadius: 30,
-    borderTopLeftRadius: 30,
-  },
-  absoluteBox: {
-    position: "absolute",
-    left: 0,
-    top: -60,
-    width: "100%",
-  },
-  avatar: {
-    alignSelf: "center",
-    width: 120,
-    height: 120,
-    borderRadius: 10,
-    backgroundColor: "#F6F6F6",
-  },
-  title: {
-    textAlign: "center",
-    fontSize: 30,
-    marginTop: 20,
-  },
-  input: {
-    height: 40,
-    marginVertical: 8,
-    padding: 10,
-    borderColor: "#F6F6F6",
-    borderWidth: 1,
-    borderRadius: 5,
-    backgroundColor: "#F6F6F6",
-  },
-  button: {
-    width: "100%",
-    height: 50,
-    borderRadius: 50,
-    marginTop: 30,
-    backgroundColor: "#FF6C00",
-    justifyContent: "center",
-  },
-  btnText: {
-    color: "white",
-    textAlign: "center",
-  },
-});
