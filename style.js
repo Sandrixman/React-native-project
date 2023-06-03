@@ -40,37 +40,12 @@ export const styles = (keyboardAvoiding, formPadding) =>
       borderRadius: 15,
       backgroundColor: "#F6F6F6",
     },
-    postPhoto: {
-      alignSelf: "center",
+    cameraBox: {
       width: "100%",
       height: 240,
       borderRadius: 15,
-      backgroundColor: "#F6F6F6",
     },
-    photoIconWrapper: {
-      position: "absolute",
-      left: 0,
-      right: 0,
-      top: 90,
-      marginHorizontal: "auto",
-    },
-    photoIcon: {
-      alignSelf: "center",
-      fontSize: 28,
-      padding: 15,
-      borderRadius: 50,
-      color: "#BDBDBD",
-      backgroundColor: "white",
-    },
-    activePhotoIcon: {
-      color: "white",
-      backgroundColor: "#ffffff4d",
-    },
-    photoText: {
-      color: "#BDBDBD",
-      fontSize: 16,
-      marginBottom: 20,
-    },
+
     setImg: {
       fontSize: 24,
       position: "absolute",
@@ -122,5 +97,12 @@ export const styles = (keyboardAvoiding, formPadding) =>
       borderRadius: 30,
       justifyContent: "center",
       alignItems: "center",
+    },
+
+    profileTitle: {
+      fontSize: 30,
+      fontWeight: 500,
+      paddingTop: 60,
+      alignSelf: "center",
     },
   });

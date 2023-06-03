@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
-import { chooseAvatar } from "../utils/imagePicker";
-import { Ionicons } from "@expo/vector-icons";
-import { View, Text, TouchableOpacity, Image, TextInput } from "react-native";
+import MobCamera from "../utils/camera";
+import { View, Text, TouchableOpacity, TextInput } from "react-native";
 import { styles } from "../style";
 
 export function CreatePosts() {
-  const [photoUri, setPhotoUri] = useState(null);
   const [name, setName] = useState("");
   const [place, setPlace] = useState("");
   const [isFormValid, setFormValid] = useState(false);
@@ -13,8 +11,8 @@ export function CreatePosts() {
   const style = styles();
 
   useEffect(() => {
-    setFormValid(name !== "" && place !== "" && photoUri !== null);
-  }, [name, place, photoUri]);
+    setFormValid(name !== "" && place !== "");
+  }, [name, place]);
 
   const createPost = () => {
     console.log("click");
@@ -22,20 +20,8 @@ export function CreatePosts() {
 
   return (
     <View style={style.container}>
-      <TouchableOpacity onPress={() => chooseAvatar({ setPhotoUri })}>
-        <Image style={style.postPhoto} source={{ uri: photoUri }} />
-        {photoUri ? (
-          <Text style={style.photoText}>Редагувати фото</Text>
-        ) : (
-          <Text style={style.photoText}>Завантажте фото</Text>
-        )}
-        <View style={[style.photoIconWrapper]}>
-          <Ionicons
-            name="md-camera"
-            style={[style.photoIcon, photoUri && style.activePhotoIcon]}
-          />
-        </View>
-      </TouchableOpacity>
+      <MobCamera />
+
       <TextInput
         style={style.postInput}
         onChangeText={setName}

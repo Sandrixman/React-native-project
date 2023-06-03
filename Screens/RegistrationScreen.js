@@ -20,7 +20,7 @@ import {
 export default function Registration({
   setUserName,
   setUserMail,
-  getPhotoUri,
+  getAvatarUri,
 }) {
   const [fontsLoaded] = useFonts({
     "Inter-Black": require("../assets/fonts/Inter-Thin.otf"),
@@ -29,7 +29,7 @@ export default function Registration({
   const [nameInpyt, setNameInpyt] = useState("");
   const [mailInpyt, setMailInpyt] = useState("");
   const [passwordInpyt, setPasswordInpyt] = useState("");
-  const [photoUri, setPhotoUri] = useState(null);
+  const [imageUri, setImageUri] = useState(null);
 
   const navigation = useNavigation();
 
@@ -44,12 +44,12 @@ export default function Registration({
   const onEntry = () => {
     setUserName(nameInpyt);
     setUserMail(mailInpyt);
-    getPhotoUri(photoUri);
+    getAvatarUri(imageUri);
     return navigation.navigate("Home");
   };
 
   const removeAvatar = () => {
-    setPhotoUri(null);
+    setAvatarUri(null);
   };
 
   return (
@@ -66,8 +66,8 @@ export default function Registration({
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={regStyle.form}>
             <View style={regStyle.absoluteBox}>
-              <Image style={regStyle.avatar} source={{ uri: photoUri }} />
-              {photoUri ? (
+              <Image style={regStyle.avatar} source={{ uri: imageUri }} />
+              {imageUri ? (
                 <TouchableOpacity onPress={removeAvatar}>
                   <AntDesign
                     style={regStyle.setImg}
@@ -76,7 +76,7 @@ export default function Registration({
                   />
                 </TouchableOpacity>
               ) : (
-                <TouchableOpacity onPress={() => chooseAvatar({ setPhotoUri })}>
+                <TouchableOpacity onPress={() => chooseAvatar({ setImageUri })}>
                   <AntDesign
                     style={regStyle.setImg}
                     name="pluscircleo"

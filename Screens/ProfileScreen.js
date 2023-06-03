@@ -1,13 +1,20 @@
-import { useState } from "react";
 import { chooseAvatar } from "../utils/imagePicker";
 import { styles } from "../style";
 import { AntDesign } from "@expo/vector-icons";
-import { View, Image, TouchableOpacity, ImageBackground } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  ImageBackground,
+} from "react-native";
 
-export function Profile() {
-  const [photoUri, setPhotoUri] = useState(null);
-
+export function Profile({ userName, avataUri, setImageUri }) {
   const style = styles();
+
+  const removeAvatar = () => {
+    setImageUri(null);
+  };
 
   return (
     <ImageBackground
@@ -18,8 +25,8 @@ export function Profile() {
       <View style={{ flex: 0.3 }}></View>
       <View style={style.container}>
         <View style={style.absoluteBox}>
-          <Image style={style.avatar} source={{ uri: photoUri }} />
-          {photoUri ? (
+          <Image style={style.avatar} source={{ uri: avataUri }} />
+          {avataUri ? (
             <TouchableOpacity onPress={removeAvatar}>
               <AntDesign
                 style={style.setImg}
@@ -28,7 +35,7 @@ export function Profile() {
               />
             </TouchableOpacity>
           ) : (
-            <TouchableOpacity onPress={() => chooseAvatar({ setPhotoUri })}>
+            <TouchableOpacity onPress={() => chooseAvatar({ setImageUri })}>
               <AntDesign
                 style={style.setImg}
                 name="pluscircleo"
@@ -37,6 +44,7 @@ export function Profile() {
             </TouchableOpacity>
           )}
         </View>
+        <Text style={style.profileTitle}>{userName}</Text>
       </View>
     </ImageBackground>
   );

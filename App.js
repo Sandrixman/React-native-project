@@ -5,15 +5,13 @@ import { NavigationContainer } from "@react-navigation/native";
 import Registration from "./Screens/RegistrationScreen";
 import Login from "./Screens/LoginScreen";
 import Home from "./Screens/Home";
-import { Map } from "./Screens/MapScreen";
-import Comments from "./Screens/CommentsScreen";
 
 const MainStack = createStackNavigator();
 
 export default function App() {
   const [userName, setUserName] = useState(null);
   const [userMail, setUserMail] = useState(null);
-  const [photoUri, setPhotoUri] = useState(null);
+  const [avataUri, setAvatarUri] = useState(null);
 
   return (
     <NavigationContainer>
@@ -28,15 +26,19 @@ export default function App() {
             <Registration
               setUserName={setUserName}
               setUserMail={setUserMail}
-              getPhotoUri={setPhotoUri}
+              getAvatarUri={setAvatarUri}
             />
           )}
         </MainStack.Screen>
         <MainStack.Screen name="Login" component={Login} />
-        <MainStack.Screen name="Comments" component={Comments} />
         <MainStack.Screen name="Home">
           {() => (
-            <Home userName={userName} userMail={userMail} photoUri={photoUri} />
+            <Home
+              userName={userName}
+              userMail={userMail}
+              avataUri={avataUri}
+              setAvatarUri={setAvatarUri}
+            />
           )}
         </MainStack.Screen>
       </MainStack.Navigator>

@@ -10,7 +10,7 @@ import { Posts } from "./PostsScreen";
 const Tabs = createBottomTabNavigator();
 const style = styles();
 
-const Home = ({ userName, userMail, photoUri }) => {
+const Home = ({ userName, userMail, avataUri, setAvatarUri }) => {
   const navigation = useNavigation();
 
   const onLogout = () => navigation.navigate("Login");
@@ -81,12 +81,11 @@ const Home = ({ userName, userMail, photoUri }) => {
         }}
       >
         {() => (
-          <Posts userName={userName} userMail={userMail} photoUri={photoUri} />
+          <Posts userName={userName} userMail={userMail} avataUri={avataUri} />
         )}
       </Tabs.Screen>
       <Tabs.Screen
         name="CreatePosts"
-        component={CreatePosts}
         options={{
           title: "Створити публікацію",
           headerTitleAlign: "center",
@@ -95,7 +94,7 @@ const Home = ({ userName, userMail, photoUri }) => {
             fontSize: 17,
           },
           headerLeft: () => (
-            <TouchableOpacity onPress={() => navigation.navigate("Comments")}>
+            <TouchableOpacity onPress={() => navigation.navigate("Posts")}>
               <Ionicons
                 name="arrow-back"
                 size={24}
@@ -105,14 +104,23 @@ const Home = ({ userName, userMail, photoUri }) => {
             </TouchableOpacity>
           ),
         }}
-      />
+      >
+        {() => <CreatePosts />}
+      </Tabs.Screen>
       <Tabs.Screen
         name="Profile"
-        component={Profile}
         options={{
           headerShown: false,
         }}
-      />
+      >
+        {() => (
+          <Profile
+            userName={userName}
+            avataUri={avataUri}
+            setImageUri={setAvatarUri}
+          />
+        )}
+      </Tabs.Screen>
     </Tabs.Navigator>
   );
 };
