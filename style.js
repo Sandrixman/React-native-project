@@ -57,9 +57,13 @@ export const styles = (keyboardAvoiding, formPadding) =>
       fontSize: 30,
       marginVertical: 20,
     },
+    iconContainer: {
+      position: "absolute",
+      right: 20,
+      top: 10,
+    },
     input: {
-      height: 50,
-      marginVertical: 8,
+      height: 45,
       padding: 10,
       borderColor: "#F6F6F6",
       borderWidth: 1,
@@ -104,5 +108,9 @@ export const styles = (keyboardAvoiding, formPadding) =>
       fontWeight: 500,
       paddingTop: 60,
       alignSelf: "center",
+    },
+
+    error: {
+      color: "red",
     },
   });

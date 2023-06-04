@@ -2,6 +2,7 @@ import { useFonts } from "expo-font";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { styles } from "../style";
+import { FormikRegForm } from "../FormikForm";
 import { chooseAvatar } from "../utils/imagePicker";
 import { AntDesign } from "@expo/vector-icons";
 import {
@@ -10,7 +11,6 @@ import {
   KeyboardAvoidingView,
   Platform,
   Text,
-  TextInput,
   TouchableOpacity,
   TouchableWithoutFeedback,
   View,
@@ -26,9 +26,6 @@ export default function Registration({
     "Inter-Black": require("../assets/fonts/Inter-Thin.otf"),
   });
 
-  const [nameInpyt, setNameInpyt] = useState("");
-  const [mailInpyt, setMailInpyt] = useState("");
-  const [passwordInpyt, setPasswordInpyt] = useState("");
   const [imageUri, setImageUri] = useState(null);
 
   const navigation = useNavigation();
@@ -41,15 +38,8 @@ export default function Registration({
     return null;
   }
 
-  const onEntry = () => {
-    setUserName(nameInpyt);
-    setUserMail(mailInpyt);
-    getAvatarUri(imageUri);
-    return navigation.navigate("Home");
-  };
-
   const removeAvatar = () => {
-    setAvatarUri(null);
+    setImageUri(null);
   };
 
   return (
@@ -86,27 +76,11 @@ export default function Registration({
               )}
             </View>
             <Text style={regStyle.title}>Реєстрація</Text>
-            <TextInput
-              style={regStyle.input}
-              onChangeText={setNameInpyt}
-              value={nameInpyt}
-              placeholder="Ваше ім'я"
+            <FormikRegForm
+              setUserName={setUserName}
+              setUserMail={setUserMail}
+              setAvatarUri={() => getAvatarUri(imageUri)}
             />
-            <TextInput
-              style={regStyle.input}
-              onChangeText={setMailInpyt}
-              value={mailInpyt}
-              placeholder="Адреса електронної пошти"
-            />
-            <TextInput
-              style={regStyle.input}
-              onChangeText={setPasswordInpyt}
-              value={passwordInpyt}
-              placeholder="Пароль"
-            />
-            <TouchableOpacity style={regStyle.button} onPress={onEntry}>
-              <Text style={regStyle.btnText}>Зареєстуватися</Text>
-            </TouchableOpacity>
             <Text
               style={{ textAlign: "center", marginTop: 30 }}
               onPress={() => navigation.navigate("Login")}

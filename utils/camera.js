@@ -22,7 +22,13 @@ export default function MobCamera() {
   return (
     <View>
       {!photoUri ? (
-        <Camera style={styles.photoView} type={type} ref={setCameraRef}>
+        <Camera
+          resizeMode={"contain"}
+          useNativeAspectRatio={true}
+          style={styles.photoView}
+          type={type}
+          ref={setCameraRef}
+        >
           <TouchableOpacity
             style={styles.takePhotoWrapper}
             onPress={async () => {
@@ -43,7 +49,7 @@ export default function MobCamera() {
               );
             }}
           >
-            <MaterialIcons name="flip-camera-android" size={30} color="blue" />
+            <MaterialIcons name="flip-camera-android" size={30} color="grey" />
           </TouchableOpacity>
         </Camera>
       ) : (
