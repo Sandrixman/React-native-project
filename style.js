@@ -9,9 +9,11 @@ export const styles = (keyboardAvoiding, formPadding) =>
       height: "100%",
       flex: 1,
     },
+
     keyboardAvoidingContainer: {
       flex: keyboardAvoiding,
     },
+
     form: {
       flex: 1,
       paddingTop: formPadding,
@@ -20,6 +22,7 @@ export const styles = (keyboardAvoiding, formPadding) =>
       borderTopRightRadius: 30,
       borderTopLeftRadius: 30,
     },
+
     absoluteBox: {
       position: "absolute",
       left: 0,
@@ -27,6 +30,7 @@ export const styles = (keyboardAvoiding, formPadding) =>
       marginHorizontal: "auto",
       top: -60,
     },
+
     avatar: {
       alignSelf: "center",
       width: 120,
@@ -34,12 +38,14 @@ export const styles = (keyboardAvoiding, formPadding) =>
       borderRadius: 15,
       backgroundColor: "#F6F6F6",
     },
+
     comentsAvatar: {
       width: 70,
       height: 70,
       borderRadius: 15,
       backgroundColor: "#F6F6F6",
     },
+
     cameraBox: {
       width: "100%",
       height: 240,
@@ -52,16 +58,19 @@ export const styles = (keyboardAvoiding, formPadding) =>
       bottom: 15,
       right: 125,
     },
+
     title: {
       textAlign: "center",
       fontSize: 30,
       marginVertical: 20,
     },
+
     iconContainer: {
       position: "absolute",
       right: 20,
       top: 10,
     },
+
     input: {
       height: 45,
       padding: 10,
@@ -70,6 +79,7 @@ export const styles = (keyboardAvoiding, formPadding) =>
       borderRadius: 5,
       backgroundColor: "#F6F6F6",
     },
+
     postInput: {
       height: 50,
       marginVertical: 8,
@@ -77,6 +87,7 @@ export const styles = (keyboardAvoiding, formPadding) =>
       borderColor: "#F6F6F6",
       borderBottomWidth: 1,
     },
+
     button: {
       width: "100%",
       height: 50,
@@ -85,16 +96,20 @@ export const styles = (keyboardAvoiding, formPadding) =>
       backgroundColor: "#FF6C00",
       justifyContent: "center",
     },
+
     disabledButton: {
       backgroundColor: "#F6F6F6",
     },
+
     btnText: {
       color: "white",
       textAlign: "center",
     },
+
     disabledText: {
       color: "grey",
     },
+
     addBtn: {
       width: 70,
       height: 40,
@@ -112,5 +127,10 @@ export const styles = (keyboardAvoiding, formPadding) =>
 
     error: {
       color: "red",
+    },
+
+    fontMiddle: {
+      fontWeight: 500,
+      fontSize: 17,
     },
   });

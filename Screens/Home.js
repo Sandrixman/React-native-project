@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { View, TouchableOpacity } from "react-native";
-import { Ionicons, Feather, MaterialCommunityIcons } from "@expo/vector-icons";
+import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 import { styles } from "../style";
 import { CreatePosts } from "./CreatePostsScreen";
 import { Profile } from "./ProfileScreen";
@@ -19,9 +19,12 @@ const Home = ({ userName, userMail, avataUri, setAvatarUri }) => {
     <Tabs.Navigator
       initialRouteName="Posts"
       screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused }) => {
+        tabBarIcon: ({ color, focused }) => {
+          let iconName;
           if (route.name === "Profile") {
-            return <Feather name="user" size={20} color="black" />;
+            iconName = "user";
+          } else if (route.name === "Posts") {
+            iconName = "grid";
           } else if (route.name === "CreatePosts") {
             return focused ? (
               <View style={style.addBtn} backgroundColor="#F6F6F6">
@@ -36,18 +39,18 @@ const Home = ({ userName, userMail, avataUri, setAvatarUri }) => {
                 <Feather name="plus" size={20} color="white" />
               </View>
             );
-          } else if (route.name === "Posts") {
-            return <Ionicons name="grid-outline" size={24} color="black" />;
           }
-          return null;
+          return (
+            <Feather
+              name={iconName}
+              size={24}
+              color={color}
+              focused={focused}
+            />
+          );
         },
-        tabBarLabel: "",
-        tabBarActiveTintColor: "tomato",
-        tabBarInactiveTintColor: "gray",
+        tabBarShowLabel: false,
         tabBarStyle: {
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "center",
           height: 80,
           borderTopColor: "grey",
           borderTopWidth: 1,
@@ -56,7 +59,6 @@ const Home = ({ userName, userMail, avataUri, setAvatarUri }) => {
           borderBottomColor: "grey",
           borderBottomWidth: 1,
         },
-        tabBarVisible: route.name !== "CreatePosts",
       })}
     >
       <Tabs.Screen
@@ -64,10 +66,7 @@ const Home = ({ userName, userMail, avataUri, setAvatarUri }) => {
         options={{
           title: "Публікації",
           headerTitleAlign: "center",
-          headerTitleStyle: {
-            fontWeight: 500,
-            fontSize: 17,
-          },
+          headerTitleStyle: style.fontMiddle,
           headerRight: () => (
             <TouchableOpacity onPress={onLogout}>
               <MaterialCommunityIcons
@@ -89,14 +88,11 @@ const Home = ({ userName, userMail, avataUri, setAvatarUri }) => {
         options={{
           title: "Створити публікацію",
           headerTitleAlign: "center",
-          headerTitleStyle: {
-            fontWeight: 500,
-            fontSize: 17,
-          },
+          headerTitleStyle: style.fontMiddle,
           headerLeft: () => (
             <TouchableOpacity onPress={() => navigation.navigate("Posts")}>
-              <Ionicons
-                name="arrow-back"
+              <Feather
+                name="arrow-left"
                 size={24}
                 color="black"
                 marginLeft={20}
