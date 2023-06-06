@@ -1,34 +1,32 @@
 import { StyleSheet } from "react-native";
 
-export const styles = (keyboardAvoiding, formPadding) =>
+export const styles = (formPadding) =>
   StyleSheet.create({
     container: {
+      flex: 1,
       paddingHorizontal: 16,
       paddingVertical: 32,
       backgroundColor: "white",
-      height: "100%",
-      flex: 1,
     },
-
-    keyboardAvoidingContainer: {
-      flex: keyboardAvoiding,
+    test: {
+      paddingBottom: 48,
     },
 
     form: {
       flex: 1,
       paddingTop: formPadding,
       paddingHorizontal: 16,
-      backgroundColor: "white",
       borderTopRightRadius: 30,
       borderTopLeftRadius: 30,
+      backgroundColor: "white",
     },
 
     absoluteBox: {
       position: "absolute",
       left: 0,
       right: 0,
-      marginHorizontal: "auto",
       top: -60,
+      marginHorizontal: "auto",
     },
 
     avatar: {
@@ -71,6 +69,12 @@ export const styles = (keyboardAvoiding, formPadding) =>
       top: 10,
     },
 
+    locationIcon: {
+      position: "absolute",
+      top: 20,
+      left: 0,
+    },
+
     input: {
       height: 45,
       padding: 10,
@@ -84,6 +88,14 @@ export const styles = (keyboardAvoiding, formPadding) =>
       height: 50,
       marginVertical: 8,
       padding: 10,
+      borderColor: "#F6F6F6",
+      borderBottomWidth: 1,
+    },
+    locationInput: {
+      height: 50,
+      marginVertical: 8,
+      padding: 10,
+      paddingLeft: 40,
       borderColor: "#F6F6F6",
       borderBottomWidth: 1,
     },
@@ -132,5 +144,18 @@ export const styles = (keyboardAvoiding, formPadding) =>
     fontMiddle: {
       fontWeight: 500,
       fontSize: 17,
+    },
+    fontSmall: {
+      fontWeight: 400,
+      fontSize: 16,
+    },
+
+    postWrapper: {
+      marginTop: 20,
+    },
+
+    postInfo: {
+      flexDirection: "row",
+      justifyContent: "space-between",
     },
   });

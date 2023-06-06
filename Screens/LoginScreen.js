@@ -10,7 +10,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
-import { FormikLogForm } from "../FormikForm";
+import { FormikLogForm } from "../Components/FormikForm";
 
 export default function Login() {
   const [fontsLoaded] = useFonts({
@@ -19,9 +19,8 @@ export default function Login() {
 
   const navigation = useNavigation();
 
-  const keyboardAvoidingContainer = 2;
   const formPadding = 20;
-  const loginStyle = styles(keyboardAvoidingContainer, formPadding);
+  const loginStyle = styles(formPadding);
 
   if (!fontsLoaded) {
     return null;
@@ -36,7 +35,7 @@ export default function Login() {
       <View style={{ flex: 1.4 }}></View>
       <KeyboardAvoidingView
         behavior={Platform.OS == "ios" ? "padding" : null}
-        style={loginStyle.keyboardAvoidingContainer}
+        style={{ flex: 2 }}
       >
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={loginStyle.form}>

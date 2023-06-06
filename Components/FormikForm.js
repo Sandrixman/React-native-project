@@ -3,7 +3,7 @@ import * as Yup from "yup";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
-import { styles } from "./style";
+import { styles } from "../style";
 import {
   View,
   TextInput,
@@ -17,6 +17,7 @@ const style = styles();
 export const FormikRegForm = ({ setUserName, setUserMail, setAvatarUri }) => {
   const navigation = useNavigation();
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
@@ -35,6 +36,13 @@ export const FormikRegForm = ({ setUserName, setUserMail, setAvatarUri }) => {
       .required("Password is required"),
   });
 
+  const handleSubmit = (values) => {
+    setUserName(values.name);
+    setUserMail(values.email);
+    setAvatarUri();
+    navigation.navigate("Home");
+  };
+
   return (
     <Formik
       initialValues={{
@@ -43,12 +51,8 @@ export const FormikRegForm = ({ setUserName, setUserMail, setAvatarUri }) => {
         password: "",
       }}
       validationSchema={formikValidationSchema}
-      onSubmit={(values) => {
-        setUserName(values.name);
-        setUserMail(values.email);
-        setAvatarUri();
-        return navigation.navigate("Home");
-      }}
+      onSubmit={handleSubmit}
+      validateOnMount
     >
       {({ handleSubmit, handleChange, values, errors }) => (
         <>
@@ -59,15 +63,16 @@ export const FormikRegForm = ({ setUserName, setUserMail, setAvatarUri }) => {
             value={values.name}
             placeholder="Ваше ім'я"
           />
-          <Text style={style.error}>{errors.name}</Text>
+          <Text style={style.error}>{isSubmitted && errors.name}</Text>
           <TextInput
             name="email"
+            autoComplete="email"
             style={style.input}
             placeholder="Адреса електронної пошти"
             onChangeText={handleChange("email")}
             value={values.email}
           />
-          <Text style={style.error}>{errors.email}</Text>
+          <Text style={style.error}>{isSubmitted && errors.email}</Text>
           <View>
             <TextInput
               name="password"
@@ -88,8 +93,14 @@ export const FormikRegForm = ({ setUserName, setUserMail, setAvatarUri }) => {
               />
             </TouchableOpacity>
           </View>
-          <Text style={style.error}>{errors.password}</Text>
-          <TouchableHighlight style={style.button} onPress={handleSubmit}>
+          <Text style={style.error}>{isSubmitted && errors.password}</Text>
+          <TouchableHighlight
+            style={style.button}
+            onPress={() => {
+              handleSubmit();
+              setIsSubmitted(true);
+            }}
+          >
             <Text style={style.btnText}>Зареєстуватися</Text>
           </TouchableHighlight>
         </>
@@ -101,6 +112,7 @@ export const FormikRegForm = ({ setUserName, setUserMail, setAvatarUri }) => {
 export const FormikLogForm = () => {
   const navigation = useNavigation();
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
@@ -115,6 +127,11 @@ export const FormikLogForm = () => {
       .required("Password is required"),
   });
 
+  const handleSubmit = () => {
+    setIsSubmitted(true);
+    navigation.navigate("Home");
+  };
+
   return (
     <Formik
       initialValues={{
@@ -122,10 +139,7 @@ export const FormikLogForm = () => {
         password: "",
       }}
       validationSchema={formikValidationSchema}
-      onSubmit={(values) => {
-        console.log(values);
-        return navigation.navigate("Home");
-      }}
+      onSubmit={handleSubmit}
     >
       {({ handleSubmit, handleChange, values, errors }) => (
         <>
@@ -136,7 +150,7 @@ export const FormikLogForm = () => {
             onChangeText={handleChange("email")}
             value={values.email}
           />
-          <Text style={style.error}>{errors.email}</Text>
+          <Text style={style.error}>{isSubmitted && errors.email}</Text>
           <View>
             <TextInput
               name="password"
@@ -157,8 +171,14 @@ export const FormikLogForm = () => {
               />
             </TouchableOpacity>
           </View>
-          <Text style={style.error}>{errors.password}</Text>
-          <TouchableHighlight style={style.button} onPress={handleSubmit}>
+          <Text style={style.error}>{isSubmitted && errors.password}</Text>
+          <TouchableHighlight
+            style={style.button}
+            onPress={() => {
+              handleSubmit();
+              setIsSubmitted(true);
+            }}
+          >
             <Text style={style.btnText}>Увійти</Text>
           </TouchableHighlight>
         </>

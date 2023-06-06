@@ -1,6 +1,6 @@
 import * as ImagePicker from "expo-image-picker";
 
-export const chooseAvatar = async ({ setPhotoUri, setImageUri }) => {
+export const chooseAvatar = async ({ setPhoto, setImageUri }) => {
   const permissionResult =
     await ImagePicker.requestMediaLibraryPermissionsAsync();
   if (permissionResult.granted === false) {
@@ -15,7 +15,7 @@ export const chooseAvatar = async ({ setPhotoUri, setImageUri }) => {
       setImageUri && setImageUri(selectedAsset.uri);
     }
     {
-      setPhotoUri && setPhotoUri(selectedAsset.uri);
+      setPhoto && setPhoto(selectedAsset.uri);
     }
   }
 };

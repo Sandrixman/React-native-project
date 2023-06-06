@@ -5,10 +5,9 @@ import { chooseAvatar } from "../utils/imagePicker";
 import { Ionicons, MaterialIcons, AntDesign } from "@expo/vector-icons";
 import { Text, View, TouchableOpacity, StyleSheet, Image } from "react-native";
 
-export default function MobCamera() {
+export default function MobCamera({ setPhoto, photo }) {
   const [cameraRef, setCameraRef] = useState(null);
   const [type, setType] = useState(CameraType.back);
-  const [photoUri, setPhotoUri] = useState(null);
 
   const permission = Camera.useCameraPermissions();
 
@@ -21,7 +20,7 @@ export default function MobCamera() {
 
   return (
     <View>
-      {!photoUri ? (
+      {!photo ? (
         <Camera
           resizeMode={"contain"}
           useNativeAspectRatio={true}
@@ -35,7 +34,7 @@ export default function MobCamera() {
               if (cameraRef) {
                 const { uri } = await cameraRef.takePictureAsync();
                 await MediaLibrary.createAssetAsync(uri);
-                setPhotoUri(uri);
+                setPhoto(uri);
               }
             }}
           >
@@ -54,23 +53,31 @@ export default function MobCamera() {
         </Camera>
       ) : (
         <View style={styles.photoView}>
-          <Image style={styles.photo} source={{ uri: photoUri }} />
+          <Image style={styles.photo} source={{ uri: photo }} />
           <View style={styles.absolute}>
             <TouchableOpacity
               style={styles.backToCamera}
-              onPress={() => setPhotoUri(null)}
+              onPress={() => setPhoto(null)}
             >
               <AntDesign name="back" size={24} color="black" />
             </TouchableOpacity>
           </View>
         </View>
       )}
-      {photoUri ? (
-        <TouchableOpacity onPress={() => chooseAvatar({ setPhotoUri })}>
+      {photo ? (
+        <TouchableOpacity
+          onPress={() => {
+            chooseAvatar({ setPhoto });
+          }}
+        >
           <Text style={styles.editPhotoText}>Редагувати фото</Text>
         </TouchableOpacity>
       ) : (
-        <TouchableOpacity onPress={() => chooseAvatar({ setPhotoUri })}>
+        <TouchableOpacity
+          onPress={() => {
+            chooseAvatar({ setPhoto });
+          }}
+        >
           <Text style={styles.editPhotoText}>Завантажте фото</Text>
         </TouchableOpacity>
       )}
@@ -125,5 +132,9 @@ const styles = StyleSheet.create({
     bottom: 0,
     right: 0,
     padding: 10,
+  },
+
+  postInfo: {
+    flexDirection: "row",
   },
 });

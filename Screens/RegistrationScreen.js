@@ -2,7 +2,7 @@ import { useFonts } from "expo-font";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { styles } from "../style";
-import { FormikRegForm } from "../FormikForm";
+import { FormikRegForm } from "../Components/FormikForm";
 import { chooseAvatar } from "../utils/imagePicker";
 import { AntDesign } from "@expo/vector-icons";
 import {
@@ -30,9 +30,8 @@ export default function Registration({
 
   const navigation = useNavigation();
 
-  const keyboardAvoidingContainer = 3.5;
   const formPadding = 60;
-  const regStyle = styles(keyboardAvoidingContainer, formPadding);
+  const regStyle = styles(formPadding);
 
   if (!fontsLoaded) {
     return null;
@@ -51,7 +50,7 @@ export default function Registration({
       <View style={{ flex: 1 }}></View>
       <KeyboardAvoidingView
         behavior={Platform.OS == "ios" ? "padding" : null}
-        style={regStyle.keyboardAvoidingContainer}
+        style={{ flex: 3.5 }}
       >
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={regStyle.form}>

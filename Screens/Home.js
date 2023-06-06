@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { View, TouchableOpacity } from "react-native";
@@ -11,9 +12,14 @@ const Tabs = createBottomTabNavigator();
 const style = styles();
 
 const Home = ({ userName, userMail, avataUri, setAvatarUri }) => {
-  const navigation = useNavigation();
+  const [posts, setPosts] = useState([]);
 
+  const navigation = useNavigation();
   const onLogout = () => navigation.navigate("Login");
+
+  const addPost = (obj) => {
+    setPosts((prevPosts) => [...prevPosts, obj]);
+  };
 
   return (
     <Tabs.Navigator
@@ -80,7 +86,12 @@ const Home = ({ userName, userMail, avataUri, setAvatarUri }) => {
         }}
       >
         {() => (
-          <Posts userName={userName} userMail={userMail} avataUri={avataUri} />
+          <Posts
+            userName={userName}
+            userMail={userMail}
+            avataUri={avataUri}
+            posts={posts}
+          />
         )}
       </Tabs.Screen>
       <Tabs.Screen
@@ -101,7 +112,7 @@ const Home = ({ userName, userMail, avataUri, setAvatarUri }) => {
           ),
         }}
       >
-        {() => <CreatePosts />}
+        {() => <CreatePosts addPost={addPost} />}
       </Tabs.Screen>
       <Tabs.Screen
         name="Profile"

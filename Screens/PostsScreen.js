@@ -1,9 +1,10 @@
+import { Post } from "../Components/Post";
 import { styles } from "../style";
-import { View, Text, Image } from "react-native";
+import { SafeAreaView, ScrollView, View, Text, Image } from "react-native";
 
-export function Posts({ userName, userMail, avataUri }) {
-  const style = styles();
+const style = styles();
 
+export function Posts({ userName, userMail, avataUri, posts }) {
   return (
     <View style={style.container}>
       <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -15,6 +16,16 @@ export function Posts({ userName, userMail, avataUri }) {
           <Text style={{ marginLeft: 10, fontSize: 11 }}>{userMail}</Text>
         </View>
       </View>
+      <ScrollView style={style.test}>
+        <View>
+          {posts.length > 0 &&
+            posts.map((post) => (
+              <View key={post.id}>
+                <Post post={post} />
+              </View>
+            ))}
+        </View>
+      </ScrollView>
     </View>
   );
 }
