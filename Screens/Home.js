@@ -6,7 +6,7 @@ import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 import { styles } from "../style";
 import { CreatePosts } from "./CreatePostsScreen";
 import { Profile } from "./ProfileScreen";
-import { Posts } from "./PostsScreen";
+import { PostsScreen } from "./PostsScreen";
 
 const Tabs = createBottomTabNavigator();
 const style = styles();
@@ -23,13 +23,13 @@ const Home = ({ userName, userMail, avataUri, setAvatarUri }) => {
 
   return (
     <Tabs.Navigator
-      initialRouteName="Posts"
+      initialRouteName="PostsScreen"
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color, focused }) => {
           let iconName;
           if (route.name === "Profile") {
             iconName = "user";
-          } else if (route.name === "Posts") {
+          } else if (route.name === "PostsScreen") {
             iconName = "grid";
           } else if (route.name === "CreatePosts") {
             return focused ? (
@@ -68,7 +68,7 @@ const Home = ({ userName, userMail, avataUri, setAvatarUri }) => {
       })}
     >
       <Tabs.Screen
-        name="Posts"
+        name="PostsScreen"
         options={{
           title: "Публікації",
           headerTitleAlign: "center",
@@ -86,7 +86,7 @@ const Home = ({ userName, userMail, avataUri, setAvatarUri }) => {
         }}
       >
         {() => (
-          <Posts
+          <PostsScreen
             userName={userName}
             userMail={userMail}
             avataUri={avataUri}

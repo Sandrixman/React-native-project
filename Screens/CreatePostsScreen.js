@@ -38,7 +38,7 @@ export function CreatePosts({ addPost }) {
     setName("");
     setPlace("");
     setPhoto(null);
-    navigation.navigate("Posts");
+    navigation.navigate("PostsScreen");
   };
 
   return (

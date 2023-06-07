@@ -4,12 +4,8 @@ export const styles = (formPadding) =>
   StyleSheet.create({
     container: {
       flex: 1,
-      paddingHorizontal: 16,
-      paddingVertical: 32,
+      padding: 16,
       backgroundColor: "white",
-    },
-    test: {
-      paddingBottom: 48,
     },
 
     form: {
@@ -44,10 +40,11 @@ export const styles = (formPadding) =>
       backgroundColor: "#F6F6F6",
     },
 
-    cameraBox: {
+    postImg: {
       width: "100%",
       height: 240,
       borderRadius: 15,
+      marginBottom: 8,
     },
 
     setImg: {
@@ -148,14 +145,20 @@ export const styles = (formPadding) =>
     fontSmall: {
       fontWeight: 400,
       fontSize: 16,
+      textDecorationLine: "underline",
     },
 
     postWrapper: {
-      marginTop: 20,
+      marginBottom: 20,
     },
 
     postInfo: {
       flexDirection: "row",
       justifyContent: "space-between",
+      alignItems: "center",
+      marginTop: 12,
+    },
+    postLocation: {
+      flexDirection: "row",
     },
   });

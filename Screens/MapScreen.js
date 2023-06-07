@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, Dimensions } from "react-native";
+import { View, StyleSheet, Dimensions } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import * as Location from "expo-location";
 
-export const Map = () => {
+export function MapScreen() {
   const [location, setLocation] = useState(null);
 
   useEffect(() => {
@@ -39,7 +39,7 @@ export const Map = () => {
       </MapView>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
