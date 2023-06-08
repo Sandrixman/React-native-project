@@ -148,7 +148,17 @@ export const styles = (formPadding) =>
       textDecorationLine: "underline",
     },
 
-    postWrapper: {
+    profileInfo: {
+      flexDirection: "row",
+      alignItems: "center",
+      paddingBottom: 16,
+    },
+
+    postsWrapper: {
+      marginBottom: 60,
+    },
+
+    postConteiner: {
       marginBottom: 20,
     },
 
@@ -158,7 +168,8 @@ export const styles = (formPadding) =>
       alignItems: "center",
       marginTop: 12,
     },
-    postLocation: {
+
+    row: {
       flexDirection: "row",
     },
   });

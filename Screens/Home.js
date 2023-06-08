@@ -15,7 +15,6 @@ const Home = ({ userName, userMail, avataUri, setAvatarUri }) => {
   const [posts, setPosts] = useState([]);
 
   const navigation = useNavigation();
-  const onLogout = () => navigation.navigate("Login");
 
   const addPost = (obj) => {
     setPosts((prevPosts) => [...prevPosts, obj]);
@@ -61,28 +60,12 @@ const Home = ({ userName, userMail, avataUri, setAvatarUri }) => {
           borderTopColor: "grey",
           borderTopWidth: 1,
         },
-        headerStyle: {
-          borderBottomColor: "grey",
-          borderBottomWidth: 1,
-        },
       })}
     >
       <Tabs.Screen
         name="PostsScreen"
         options={{
-          title: "Публікації",
-          headerTitleAlign: "center",
-          headerTitleStyle: style.fontMiddle,
-          headerRight: () => (
-            <TouchableOpacity onPress={onLogout}>
-              <MaterialCommunityIcons
-                name="exit-run"
-                size={24}
-                color="grey"
-                marginRight={20}
-              />
-            </TouchableOpacity>
-          ),
+          headerShown: false,
         }}
       >
         {() => (

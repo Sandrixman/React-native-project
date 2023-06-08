@@ -1,9 +1,10 @@
+import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { Feather } from "@expo/vector-icons";
+import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 import { styles } from "../style";
-import { ScrollView, View, Text, Image, TouchableOpacity } from "react-native";
-import { Post } from "../Components/Post";
+import { View, Text, Image, TouchableOpacity } from "react-native";
+import { Posts } from "../Components/Posts";
 import { MapScreen } from "./MapScreen";
 import { Comments } from "./CommentsScreen";
 
@@ -11,25 +12,42 @@ const PostsStack = createStackNavigator();
 const style = styles();
 
 export function PostsScreen({ userName, userMail, avataUri, posts }) {
+  const [location, setLocation] = useState("");
+  const [photo, setPhoto] = useState("");
   const navigation = useNavigation();
+  const onLogout = () => navigation.navigate("Login");
 
   return (
-    <PostsStack.Navigator initialRouteName="Posts">
+    <PostsStack.Navigator
+      initialRouteName="Posts"
+      screenOptions={() => ({
+        headerStyle: {
+          borderBottomColor: "grey",
+          borderBottomWidth: 1,
+        },
+      })}
+    >
       <PostsStack.Screen
         name="Posts"
         options={{
-          headerShown: false,
+          title: "Публікації",
+          headerTitleAlign: "center",
+          headerTitleStyle: style.fontMiddle,
+          headerRight: () => (
+            <TouchableOpacity onPress={onLogout}>
+              <MaterialCommunityIcons
+                name="exit-run"
+                size={24}
+                color="grey"
+                marginRight={20}
+              />
+            </TouchableOpacity>
+          ),
         }}
       >
         {() => (
           <View style={style.container}>
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                paddingBottom: 16,
-              }}
-            >
+            <View style={style.profileInfo}>
               <Image style={style.comentsAvatar} source={{ uri: avataUri }} />
               <View>
                 <Text style={{ marginLeft: 10, fontWeight: 700, fontSize: 13 }}>
@@ -38,16 +56,11 @@ export function PostsScreen({ userName, userMail, avataUri, posts }) {
                 <Text style={{ marginLeft: 10, fontSize: 11 }}>{userMail}</Text>
               </View>
             </View>
-            <ScrollView>
-              <View>
-                {posts.length > 0 &&
-                  posts.map((post) => (
-                    <View key={post.id}>
-                      <Post post={post} />
-                    </View>
-                  ))}
-              </View>
-            </ScrollView>
+            <Posts
+              posts={posts}
+              setPhoto={setPhoto}
+              setLocation={setLocation}
+            />
           </View>
         )}
       </PostsStack.Screen>
@@ -69,11 +82,10 @@ export function PostsScreen({ userName, userMail, avataUri, posts }) {
           ),
         }}
       >
-        {() => <Comments posts={posts} />}
+        {() => <Comments photo={photo} />}
       </PostsStack.Screen>
       <PostsStack.Screen
         name="MapScreen"
-        component={MapScreen}
         options={{
           title: "Мапа",
           headerTitleStyle: style.fontMiddle,
@@ -89,7 +101,9 @@ export function PostsScreen({ userName, userMail, avataUri, posts }) {
             </TouchableOpacity>
           ),
         }}
-      />
+      >
+        {() => <MapScreen location={location} />}
+      </PostsStack.Screen>
     </PostsStack.Navigator>
   );
 }
