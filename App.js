@@ -2,12 +2,12 @@ import "react-native-gesture-handler";
 import { useState } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
-import { persistor, store } from "./redux/store";
-import Registration from "./screens/RegistrationScreen";
-import Login from "./screens/LoginScreen";
-import Home from "./screens/Home";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
+import { persistor, store } from "./redux/store";
+import Registration from "./screens/authScreen/RegistrationScreen";
+import Login from "./screens/authScreen/LoginScreen";
+import Home from "./screens/mainScreen/Home";
 
 const MainStack = createStackNavigator();
 
