@@ -127,6 +127,17 @@ export const styles = (formPadding) =>
       alignItems: "center",
     },
 
+    deleteBtn: {
+      width: 70,
+      height: 40,
+      marginTop: 150,
+      alignSelf: "center",
+      borderRadius: 30,
+      justifyContent: "center",
+      alignItems: "center",
+      backgroundColor: "#F6F6F6",
+    },
+
     profileTitle: {
       fontSize: 30,
       fontWeight: 500,

@@ -8,14 +8,12 @@ import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "api-key",
-  authDomain: "project-id.firebaseapp.com",
-  databaseURL: "https://project-id.firebaseio.com",
-  projectId: "project-id",
-  storageBucket: "project-id.appspot.com",
-  messagingSenderId: "sender-id",
-  appId: "app-id",
-  measurementId: "G-measurement-id",
+  apiKey: "AIzaSyAu-dqKjdMdaBwVN3neS_Pz1sBIn0Lasaw",
+  authDomain: "travel---react-native.firebaseapp.com",
+  projectId: "travel---react-native",
+  storageBucket: "travel---react-native.appspot.com",
+  messagingSenderId: "840170689459",
+  appId: "1:840170689459:android:f0a94e9fd3009cd89af1c6",
 };
 
 const app = initializeApp(firebaseConfig);
