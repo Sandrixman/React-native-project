@@ -2,7 +2,7 @@ import { useFonts } from "expo-font";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { styles } from "../style";
-import { FormikRegForm } from "../Components/FormikForm";
+import { FormikRegForm } from "../components/FormikForm";
 import { chooseAvatar } from "../utils/imagePicker";
 import { AntDesign } from "@expo/vector-icons";
 import {

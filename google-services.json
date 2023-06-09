@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "840170689459",
+    "project_id": "travel---react-native",
+    "storage_bucket": "travel---react-native.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:840170689459:android:f0a94e9fd3009cd89af1c6",
+        "android_client_info": {
+          "package_name": "Travel_Notebook.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "840170689459-5bq90f5ra91cmmu19ab0pdgesnrbtns3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAu-dqKjdMdaBwVN3neS_Pz1sBIn0Lasaw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "840170689459-5bq90f5ra91cmmu19ab0pdgesnrbtns3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

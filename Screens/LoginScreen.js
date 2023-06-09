@@ -10,7 +10,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
-import { FormikLogForm } from "../Components/FormikForm";
+import { FormikLogForm } from "../components/FormikForm";
 
 export default function Login() {
   const [fontsLoaded] = useFonts({

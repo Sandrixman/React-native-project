@@ -4,7 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 import { styles } from "../style";
 import { View, Text, Image, TouchableOpacity } from "react-native";
-import { Posts } from "../Components/Posts";
+import { Posts } from "../components/Posts";
 import { MapScreen } from "./MapScreen";
 import { Comments } from "./CommentsScreen";
 

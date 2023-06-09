@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import * as Location from "expo-location";
 import uuid from "react-native-uuid";
-import MobCamera from "../Components/Camera";
+import MobCamera from "../components/Camera";
 import { styles } from "../style";
 import { EvilIcons } from "@expo/vector-icons";
 import { View, Text, TouchableOpacity, TextInput } from "react-native";
