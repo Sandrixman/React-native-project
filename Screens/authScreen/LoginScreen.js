@@ -14,7 +14,7 @@ import { FormikLogForm } from "../../components/FormikForm";
 
 export default function Login() {
   const [fontsLoaded] = useFonts({
-    "Inter-Black": require("../assets/fonts/Inter-Thin.otf"),
+    "Inter-Black": require("../../assets/fonts/Inter-Thin.otf"),
   });
 
   const navigation = useNavigation();
@@ -29,7 +29,7 @@ export default function Login() {
   return (
     <ImageBackground
       style={{ flex: 1 }}
-      source={require("../assets/PhotoBG.jpg")}
+      source={require("../../assets/PhotoBG.jpg")}
       resizeMode="cover"
     >
       <View style={{ flex: 1.4 }}></View>

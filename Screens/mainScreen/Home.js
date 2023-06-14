@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { View, TouchableOpacity } from "react-native";
-import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
 import { styles } from "../../appStyle";
 import { CreatePosts } from "./CreatePostsScreen";
 import { Profile } from "./ProfileScreen";
@@ -31,15 +31,7 @@ const Home = ({ userName, userMail, avataUri, setAvatarUri }) => {
           } else if (route.name === "PostsScreen") {
             iconName = "grid";
           } else if (route.name === "CreatePosts") {
-            return focused ? (
-              <View style={style.addBtn} backgroundColor="#F6F6F6">
-                <MaterialCommunityIcons
-                  name="delete-forever-outline"
-                  size={28}
-                  color="#DADADA"
-                />
-              </View>
-            ) : (
+            return (
               <View style={style.addBtn} backgroundColor="#FF6C00">
                 <Feather name="plus" size={20} color="white" />
               </View>
@@ -93,6 +85,9 @@ const Home = ({ userName, userMail, avataUri, setAvatarUri }) => {
               />
             </TouchableOpacity>
           ),
+          tabBarStyle: {
+            display: "none",
+          },
         }}
       >
         {() => <CreatePosts addPost={addPost} />}

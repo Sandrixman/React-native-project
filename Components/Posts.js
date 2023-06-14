@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import { styles } from "../style";
+import { styles } from "../appStyle";
 import { EvilIcons } from "@expo/vector-icons";
 import {
   View,

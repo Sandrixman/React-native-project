@@ -3,7 +3,7 @@ import * as Yup from "yup";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
-import { styles } from "../style";
+import { styles } from "../appStyle";
 import {
   View,
   TextInput,

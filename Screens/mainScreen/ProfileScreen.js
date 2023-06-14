@@ -19,7 +19,7 @@ export function Profile({ userName, avataUri, setImageUri }) {
   return (
     <ImageBackground
       style={{ flex: 1 }}
-      source={require("../assets/PhotoBG.jpg")}
+      source={require("../../assets/PhotoBG.jpg")}
       resizeMode="cover"
     >
       <View style={{ flex: 0.3 }}></View>
